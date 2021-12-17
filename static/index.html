@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+     <link rel="stylesheet" href="/resources/demos/style.css">
+     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+     <style>
+          #greetBtn {
+               margin: 10px;
+          }
+          .select{
+               margin:10px ;
+               width: 50%;
+               height: 40px;
+               font: 3em sans-serif;
+          }
+          #header1{
+               margin:20px 0;
+
+          }
+     </style>
+</head>
+
+<body>
+     <center>
+          <div id="header1">
+               <h1>ยินดีต้อนรับสู่ door man</h1>
+          </div>
+          <div>
+               <label for="choose-sel"style="font-size: 20px;">เลือกวันที่ที่ต้องการ</label><br>
+               <ons-select id="choose-sel" class="select">
+               </ons-select>
+          </div>
+          <div>
+               <label for="command" style="font-size: 20px;">เลือกคำสั่งที่ต้องการ</label><br>
+               <ons-select id="command" class="select">
+                    <option value="ดูประวัติ" > ดูประวัติ </option>
+                    <option value="จำนวนครั้ง"> จำนวนครั้ง </option>
+               </ons-select>
+          </div>
+          <div>
+               <ons-button id="greetBtn">
+                    Starting
+               </ons-button>
+          </div>
+     </center>
+
+
+
+
+     <script>
+          console.log("55555")
+          fetch('https://d690-2403-6200-8863-78de-6c72-af25-543e-90d.ngrok.io/test', {
+               method: "GET",
+               headers: { "Content-type": "application/json;charset=UTF-8" }
+          })
+               .then(response => response.json())
+               .then((json) => {
+                    console.log(json["data"]);
+                    let jsonData = json["data"];
+
+                    for (let i = 0; i < json["data"].length; i++) {
+                         var x = document.getElementById("choose-sel");
+                         var option = document.createElement("option");
+                         option.text = json["data"][i];
+                         option.value = json["data"][i];
+                         x.add(option, x[i]);
+
+                    }
+
+               })
+               .catch(err => console.log(err));
+
+          window.onload = function () {
+               liff.init({ liffId: '1656646665-n3Oojbka' }).then(() => {
+                    btn = document.getElementById("greetBtn");
+
+                    if (liff.isLoggedIn()) {
+                         btn.innerHTML = "Ready to send ";
+                    } else {
+                         btn.innerHTML = "Error";
+                    }
+               });
+               document.getElementById('greetBtn').addEventListener('click', function () {
+                    let date = document.getElementById("choose-sel").value;
+                    let command = document.getElementById("command").value;
+                    liff.sendMessages([{ 'type': 'text', 'text': "" + date +" "+command }]).then(() => {
+                         btn = document.getElementById("greetBtn");
+                         btn.innerHTML = "Sent";
+                    });
+               });
+          }
+     </script>
+</body>
+
+</html>
