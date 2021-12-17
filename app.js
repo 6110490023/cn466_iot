@@ -122,7 +122,7 @@ function notify(status) {
      var today = new Date();
      var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-     set(date, time, { "status": "open", "Date": date, "Time": time });
+     set(date, time, { "status": status, "Date": date, "Time": time });
      set("listDate", date, {});
      lineClient.broadcast({ type: 'text', text: "สถานะประตู: " + status });
 }
