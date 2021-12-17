@@ -71,7 +71,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
                res.status(500).end();
           });
 });
-app.get('/test', async (req, res) => {
+app.get('/getdate', async (req, res) => {
      //เซตวันที่ส่งไป 12-12-2021 ว-ด-ปี
      const querySnapshot = await getDocs(collection(db, "listDate"));
      let listDate = []
