@@ -57,7 +57,6 @@
 
 
      <script>
-          console.log("55555")
           fetch('https://cn466-doorman.herokuapp.com/getdate', {
                method: "GET",
                headers: { "Content-type": "application/json;charset=UTF-8" }
@@ -73,7 +72,6 @@
                          option.text = json["data"][i];
                          option.value = json["data"][i];
                          x.add(option, x[i]);
-
                     }
 
                })

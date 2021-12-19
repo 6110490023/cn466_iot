@@ -12,17 +12,14 @@
 #define RGBLED_PIN  18
 
 const char SENSOR_TOPIC[] = "cn466/sensors/cucumber_nut";
-const char LED_TOPIC[] = "cn466/leds/cucumber_nut";
+
 
 // persistence variables
 Adafruit_HTS221 hts;
 Adafruit_MPU6050 mpu;
 Adafruit_NeoPixel pixels(1, RGBLED_PIN, NEO_GRB + NEO_KHZ800);
 
-//AsyncWebServer webServer(80);
-//WiFiClient esp32Client;
-//DNSServer dnsServer;
-// setup sensors and LED
+
 
 void setupHardware() {
   Wire.begin(I2C_SDA, I2C_SCL, 100000);
