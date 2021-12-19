@@ -1,5 +1,6 @@
 # cn466Project DOORMAN </br> [sensor ตรวจจับการเปิดปิดประตูในเเต่ละครั้ง เเละรายงานผ่านไลน์]
 ## ผู้จัดทำ : เอกนรินทร์ เลิศนันวัฒน์ 6110490023 
+[VIDEO DEMO](https://drive.google.com/file/d/1cQUxkqACn84Rz_64FSwpLexJ-lFhgbzC/view?usp=sharing)
 ![image](https://user-images.githubusercontent.com/71119981/146683106-8785191e-7e86-410f-b993-6df2a2b140b9.png) 
 </br> QR code bot
 ### Motivation : 
